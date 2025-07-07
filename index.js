@@ -87,22 +87,22 @@ const cors = require("cors");
 // );
 
 const allowedOrigins = [
-  "https://toursandtravelsapp.netlify.app", // main frontend
-  "https://fullstacktoursandtravels.netlify.app/", // secondary frontend (if any)
+  "https://toursandtravelsapp.netlify.app",
+  "https://fullstacktoursandtravels.netlify.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // Allow curl, mobile apps
+      if (!origin) return callback(null, true); // Allow non-browser clients
       if (allowedOrigins.includes(origin)) {
-        return callback(null, true); // Allow known origins
+        return callback(null, true);
       } else {
         return callback(new Error("CORS not allowed from this origin"), false);
       }
     },
     credentials: true,
-    optionsSuccessStatus: 200, // For legacy browsers (IE11, etc.)
+    optionsSuccessStatus: 200,
   })
 );
 
